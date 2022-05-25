@@ -14,33 +14,7 @@ namespace DataStructures.DoubleEndedQueueProj
             _max = max;
             _array = new int[max];
         }
-
-        public void InsertFront(int ele)
-        {
-            int i;
-            if (_front == 0 && _rear == _max - 1)
-                throw new Exception("Queue is full");
-
-            if (_front == -1)
-            {
-                _front = _rear = 0;
-                _array[_front] = ele;
-                return;
-            }
-
-            if (_front == 0)
-            {
-                for (i = _rear; i >= _front; i--)
-                    _array[i + 1] = _array[i];
-                _array[_front] = ele;
-                _rear++;
-                return;
-            }
-            
-            _front--;
-            _array[_front] = ele;
-        }
-
+        
         public void InsertRear(int ele)
         {
             int i;
@@ -67,6 +41,32 @@ namespace DataStructures.DoubleEndedQueueProj
             _array[_rear] = ele;
         }
 
+        public void InsertFront(int ele)
+        {
+            int i;
+            if (_front == 0 && _rear == _max - 1)
+                throw new Exception("Queue is full");
+
+            if (_front == -1)
+            {
+                _front = _rear = 0;
+                _array[_front] = ele;
+                return;
+            }
+
+            if (_front == 0)
+            {
+                for (i = _rear; i >= _front; i--)
+                    _array[i + 1] = _array[i];
+                _array[_front] = ele;
+                _rear++;
+                return;
+            }
+            
+            _front--;
+            _array[_front] = ele;
+        }
+        
         public int DeleteFront()
         {
             int ele;
