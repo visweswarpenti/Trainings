@@ -32,7 +32,7 @@ namespace DataStructures.QuickSortProj
                 t = array[j];
                 array[j] = array[p];
                 array[p] = t;
-                QuickSort(array, low, j - 1);
+                QuickSort(array, low, j - 1);   
                 QuickSort(array, j + 1, high);
             }
         }
