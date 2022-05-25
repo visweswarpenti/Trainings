@@ -20,29 +20,25 @@ namespace DataStructures.DoubleEndedQueueProj
             int i;
             if (_front == 0 && _rear == _max - 1)
                 throw new Exception("Queue is full");
-            else
+
+            if (_front == -1)
             {
-                if (_front == -1)
-                {
-                    _front = _rear = 0;
-                    _array[_front] = ele;
-                }
-                else
-                {
-                    if (_front != 0)
-                    {
-                        _front--;
-                        _array[_front] = ele;
-                    }
-                    else
-                    {
-                        for (i = _rear; i >= _front; i--)
-                            _array[i + 1] = _array[i];
-                        _array[_front] = ele;
-                        _rear++;
-                    }
-                }
+                _front = _rear = 0;
+                _array[_front] = ele;
+                return;
             }
+
+            if (_front == 0)
+            {
+                for (i = _rear; i >= _front; i--)
+                    _array[i + 1] = _array[i];
+                _array[_front] = ele;
+                _rear++;
+                return;
+            }
+            
+            _front--;
+            _array[_front] = ele;
         }
 
         public void InsertRear(int ele)
@@ -50,29 +46,25 @@ namespace DataStructures.DoubleEndedQueueProj
             int i;
             if (_front == 0 && _rear == _max - 1)
                 throw new Exception("Queue is full");
-            else
+
+            if (_front == -1)
             {
-                if (_front == -1)
-                {
-                    _front = _rear = 0;
-                    _array[_rear] = ele;
-                }
-                else
-                {
-                    if (_rear != _max - 1)
-                    {
-                        _rear++;
-                        _array[_rear] = ele;
-                    }
-                    else
-                    {
-                        for (i = _front; i <= _rear; i++)
-                            _array[i - 1] = _array[i];
-                        _array[_rear] = ele;
-                        _front--;
-                    }
-                }
+                _front = _rear = 0;
+                _array[_rear] = ele;
+                return;
             }
+
+            if (_rear == _max - 1)
+            {
+                for (i = _front; i <= _rear; i++)
+                    _array[i - 1] = _array[i];
+                _array[_rear] = ele;
+                _front--;
+                return;
+            }
+
+            _rear++;
+            _array[_rear] = ele;
         }
 
         public int DeleteFront()
@@ -80,15 +72,13 @@ namespace DataStructures.DoubleEndedQueueProj
             int ele;
             if (_front == -1)
                 throw new Exception("Queue is empty");
+
+            ele = _array[_front];
+            if (_front == _rear)
+                _front = _rear = -1;
             else
-            {
-                ele = _array[_front];
-                if (_front == _rear)
-                    _front = _rear = -1;
-                else
-                    _front++;
-                return ele;
-            }
+                _front++;
+            return ele;
         }
 
         public int DeleteRear()
@@ -96,15 +86,13 @@ namespace DataStructures.DoubleEndedQueueProj
             int ele;
             if (_front == -1)
                 throw new Exception("Queue is empty");
+
+            ele = _array[_rear];
+            if (_front == _rear)
+                _front = _rear = -1;
             else
-            {
-                ele = _array[_rear];
-                if (_front == _rear)
-                    _front = _rear = -1;
-                else
-                    _rear--;
-                return ele;
-            }
+                _rear--;
+            return ele;
         }
 
         public List<int> Display()
