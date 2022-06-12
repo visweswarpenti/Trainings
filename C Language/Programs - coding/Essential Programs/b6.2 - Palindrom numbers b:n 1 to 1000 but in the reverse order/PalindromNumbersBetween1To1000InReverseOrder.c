@@ -2,14 +2,14 @@
 int main1()
 {
     int n, i, m, temp, sum = 0;
-    for (i = 1000; i >=1 ; i--)
+    for (i = 1000; i >= 1; i--)
     {
         sum = 0;
         n = temp = i;
         while (n != 0)
         {
             m = n % 10;
-            sum = sum + m * m * m;
+            sum = sum * 10 + m;
             n = n / 10;
         }
         if (temp == sum)
@@ -24,25 +24,25 @@ int main1()
 //---- second approach
 
 #include <stdio.h>
-void ArmstrongOrNot(int i);
+void PalindromOrNot(int i);
 int main()
 {
-    ArmstrongOrNot(1);
+    PalindromOrNot(1);
 }
 
-void ArmstrongOrNot(int i)
+void PalindromOrNot(int i)
 {
     int n, m, temp, sum = 0;
     n = temp = i;
     if (i < 1000)
     {
-        ArmstrongOrNot(++i);
+        PalindromOrNot(++i);
     }
     sum = 0;
     while (n != 0)
     {
         m = n % 10;
-        sum = sum + m*m*m;
+        sum = sum * 10 + m;
         n = n / 10;
     }
     if (temp == sum)
